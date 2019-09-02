@@ -2,7 +2,7 @@
   <div id="app" class="container mx-auto flex flex-col h-screen justify-center">
 
     <div class="p-3 w-1/2 mx-auto">
-      <img src="./NeosIT-Logo 2017.png" alt="" id="logo" width="200">
+      <img src="./img/main.png" alt="" id="logo" width="200">
       <div class="row my-4">
         <date-picker v-model="value" :lang="lang" :first-day-of-week="1" range format="DD.MM.YYYY" class="w-4/6 border-none outline-none"></date-picker>
         <input type="text" placeholder="Ausbildungs Woche" class="w-3/12 h-8 border rounded float-right p-1 border-gray-400" v-model="woche">
@@ -15,7 +15,7 @@
 
 
     
-    <img src="./banner.png" alt="" id="banner" width="600" style="display: none">
+    <img src="./img/banner.png" alt="" id="banner" width="600" style="display: none">
   </div>
 </template>
 
