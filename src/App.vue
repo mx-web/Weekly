@@ -77,7 +77,7 @@ export default {
       doc.setFontSize(12);
 
       doc.text(this.text, 50, 200, {align:'left'});
-      doc.save("Tescht");
+      doc.save(`${this.woche}_Woche_${this.dateReturn(this.value[0], this.value[1])}.pdf`);
 
 
     },
