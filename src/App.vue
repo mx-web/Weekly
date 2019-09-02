@@ -69,14 +69,17 @@ export default {
       doc.text(`${this.woche}.Ausbildungswoche | NeosIT | vom ${this.dateReturn(this.value[0], this.value[1])}`, 425, 125, {align:'right'});
       doc.text(`BBS2 Wolfsburg | Max Walter | Ausbildungsjahr: 1`, 425, 135, {align:'right'})
 
+
       doc.setFontStyle("bold");
       doc.setFontSize(14);
-      doc.text('Tätigkeiten:', 50, 180);
+      doc.text(`${this.woche}.Ausbildungswoche`, 425, 175, {align:'right'})
+
+      doc.text('Tätigkeiten:', 50, 210);
 
       doc.setFontStyle("normal");
       doc.setFontSize(12);
 
-      doc.text(this.text, 50, 200, {align:'left'});
+      doc.text(this.text, 50, 230, {align:'left'});
       doc.save(`${this.woche}_Woche_${this.dateReturn(this.value[0], this.value[1])}.pdf`);
 
 
