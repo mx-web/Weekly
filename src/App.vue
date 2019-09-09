@@ -2,10 +2,10 @@
   <div id="app" class="container mx-auto flex flex-col h-screen justify-center">
 
     <div class="p-3 w-1/2 mx-auto">
-      <img src="./img/main.png" alt="" id="logo" width="200">
+      <img src="./img/main.png" alt="" ref="logo" width="200">
       <div class="row my-4">
         <date-picker v-model="value" :lang="lang" :first-day-of-week="1" range format="DD.MM.YYYY" class="w-4/6 border-none outline-none"></date-picker>
-        <input type="text" placeholder="Ausbildungs Woche" class="w-3/12 h-8 border rounded float-right p-1 border-gray-400" v-model="woche">
+        <input type="text" placeholder="Woche" class="w-3/12 h-8 border rounded float-right p-1 border-gray-400" v-model="woche">
       </div>
 
       <textarea name="content" id="" cols="30" rows="10" class="border rounded w-full p-3 border-gray-400" placeholder="Bericht einfügen" v-model="text"></textarea>
@@ -15,7 +15,7 @@
 
 
     
-    <img src="./img/banner.png" alt="" id="banner" width="600" style="display: none">
+    <img src="./img/banner.png" alt="" ref="banner" width="600" style="display: none">
   </div>
 </template>
 
@@ -23,8 +23,6 @@
 
 import DatePicker from 'vue2-datepicker';
 import jspdf from 'jspdf';
-import base64Image from 'base64-img';
-import { constants } from 'crypto';
 
 export default {
   name: 'app',
@@ -34,7 +32,6 @@ export default {
       value: '',
       woche: '',
       text: '',
-      // custom lang
       lang: {
         days: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
         months: ['Januar', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
@@ -43,18 +40,15 @@ export default {
   },
   methods: {
     create: function() {
-      var image = document.getElementById('logo');
-      var banner = document.getElementById('banner');
 
-      console.log(banner);
       var doc = new jspdf({
         orientation: 'p',
         unit: 'px',
         format: 'a4'
       });
 
-      doc.addImage(image, 'PNG', 225, 35, 200, 48);
-      doc.addImage(banner, 'PNG', 80, 500, 266, 18);
+      doc.addImage(this.$refs.logo, 'PNG', 225, 35, 200, 48);
+      doc.addImage(this.$refs.banner, 'PNG', 80, 500, 266, 18);
 
 
       doc.setFontStyle("bold");
@@ -63,8 +57,6 @@ export default {
       doc.text('Ausbildungsnachweis', 330, 110);
       doc.setFontStyle("normal");
       doc.setFontSize(12);
-
-
 
       doc.text(`${this.woche}.Ausbildungswoche | NeosIT | vom ${this.dateReturn(this.value[0], this.value[1])}`, 425, 125, {align:'right'});
       doc.text(`BBS2 Wolfsburg | Max Walter | Ausbildungsjahr: 1`, 425, 135, {align:'right'})
