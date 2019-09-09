@@ -1,5 +1,7 @@
 # weekly
 
+[![Build Status](https://travis-ci.org/mx-web/Weekly.svg?branch=master)](https://travis-ci.org/mx-web/Weekly)
+
 ## Project setup
 ```
 yarn install
