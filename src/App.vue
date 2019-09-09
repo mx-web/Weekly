@@ -64,7 +64,7 @@ export default {
 
       doc.setFontStyle("bold");
       doc.setFontSize(14);
-      doc.text(`${this.woche}.Ausbildungswoche`, 425, 175, {align:'right'})
+      doc.text(`${this.woche}. Ausbildungswoche`, 425, 175, {align:'right'})
 
       doc.text('Tätigkeiten:', 50, 210);
 
