@@ -58,7 +58,7 @@ export default {
       doc.setFontStyle("normal");
       doc.setFontSize(12);
 
-      doc.text(`${this.woche}.Ausbildungswoche | NeosIT | vom ${this.dateReturn(this.value[0], this.value[1])}`, 425, 125, {align:'right'});
+      doc.text(`${this.woche}. Ausbildungswoche | NeosIT | vom ${this.dateReturn(this.value[0], this.value[1])}`, 425, 125, {align:'right'});
       doc.text(`BBS2 Wolfsburg | Max Walter | Ausbildungsjahr: 1`, 425, 135, {align:'right'})
 
 
