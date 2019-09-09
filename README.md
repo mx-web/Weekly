@@ -7,7 +7,7 @@
 
 ## Clone the Repository
 ```
-https://github.com/mx-web/Weekly.git
+git clone https://github.com/mx-web/Weekly.git
 ```
 
 ## Project setup
