@@ -2,6 +2,7 @@
 ### My Weekly Report tool
 
 [![Build Status](https://travis-ci.org/mx-web/Weekly.svg?branch=master)](https://travis-ci.org/mx-web/Weekly)
+[![Known Vulnerabilities](https://snyk.io//test/github/mx-web/Weekly/badge.svg?targetFile=package.json)](https://snyk.io//test/github/mx-web/Weekly?targetFile=package.json)
 
 
 
