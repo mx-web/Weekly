@@ -2,30 +2,19 @@
 
 [![Build Status](https://travis-ci.org/mx-web/Weekly.svg?branch=master)](https://travis-ci.org/mx-web/Weekly)
 
+
+
+## Clone the Repository
+```
+https://github.com/mx-web/Weekly.git
+```
+
 ## Project setup
 ```
-yarn install
+yarn install | npm install
 ```
 
-### Compiles and hot-reloads for development
+## Compiles and hot-reloads for development
 ```
-yarn run serve
+yarn run serve | npm run serve
 ```
-
-### Compiles and minifies for production
-```
-yarn run build
-```
-
-### Run your tests
-```
-yarn run test
-```
-
-### Lints and fixes files
-```
-yarn run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
