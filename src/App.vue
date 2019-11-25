@@ -24,12 +24,6 @@
 import DatePicker from 'vue2-datepicker';
 import jspdf from 'jspdf';
 
-var htmlToPdfMake = require('html-to-pdfmake');
-var pdfMake = require('pdfmake/build/pdfmake');
-var pdfFonts = require('pdfmake/build/vfs_fonts');
-
-pdfMake.vfs = pdfFonts.pdfMake.vfs;
-
 export default {
   name: 'app',
   components: { DatePicker },
@@ -46,34 +40,49 @@ export default {
   },
   methods: {
     create: function() {
-      var html = htmlToPdfMake(`
-        <div>
-          <h1>My title</h1>
-          <p>
-            This is a sentence with a <strong>bold word</strong>, <em>one in italic</em>,
-            and <u>one with underline</u>. And finally <a href="https://www.somewhere.com">a link</a>.
-          </p>
-        </div>
-        `);
+
+      var doc = new jspdf({
+        orientation: 'p',
+        unit: 'px',
+        format: 'a4'
+      });
+
+      doc.addImage(this.$refs.logo, 'PNG', 225, 35, 200, 48);
+      doc.addImage(this.$refs.banner, 'PNG', 80, 500, 266, 18);
 
 
-        var docDefinition = {
-  content: [
-    html
-  ],
-  styles:{
-    'html-strong':{
-      background:'yellow' // it will add a yellow background to all <STRONG> elements
+      doc.setFontStyle("bold");
+      doc.setFontSize(12);
+
+      doc.text('Ausbildungsnachweis', 330, 110);
+      doc.setFontStyle("normal");
+      doc.setFontSize(12);
+
+      doc.text(`${this.woche}. Ausbildungswoche | NeosIT | vom ${this.dateReturn(this.value[0], this.value[1])}`, 425, 125, {align:'right'});
+      doc.text(`BBS2 Wolfsburg | Max Walter | Ausbildungsjahr: 1`, 425, 135, {align:'right'})
+
+
+      doc.setFontStyle("bold");
+      doc.setFontSize(14);
+      doc.text(`${this.woche}. Ausbildungswoche`, 425, 175, {align:'right'})
+
+      doc.text('Tätigkeiten:', 50, 210);
+
+      doc.setFontStyle("normal");
+      doc.setFontSize(12);
+
+      doc.text(this.text, 50, 230, {align:'left'});
+      doc.save(`${this.woche}_Woche_${this.dateReturn(this.value[0], this.value[1])}.pdf`);
+
+
+    },
+    dateReturn: function(firstDate, secondDate) {
+      /* this.dateReturn(this.value[0], this.value[1]) */
+      var FirstNewDate = new Date(Date.parse(firstDate));
+      var SecondNewDate = new Date(Date.parse(secondDate));
+      return (FirstNewDate.getDate() + "." + (FirstNewDate.getMonth() + 1) + "." + FirstNewDate.getFullYear()) + " bis " + (SecondNewDate.getDate() + "." + (SecondNewDate.getMonth() + 1) + "." + SecondNewDate.getFullYear());
     }
-  }
-};
- 
-var pdfDocGenerator = pdfMake.createPdf(docDefinition).download('dsdd.pdf');
-
-
-    }
-  
-  }
+  },
   
 }
 </script>
