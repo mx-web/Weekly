@@ -3,18 +3,19 @@
 
     <div class="p-3 w-1/2 mx-auto">
       <img src="./img/main.png" alt="" ref="logo" width="200">
-      <div class="row my-4">
+      <div class="flex flex-row my-4 justify-between">
         <date-picker v-model="value" :lang="lang" :first-day-of-week="1" range format="DD.MM.YYYY" class="w-4/6 border-none outline-none"></date-picker>
-        <input type="text" placeholder="Woche" class="w-3/12 h-8 border rounded float-right p-1 border-gray-400" v-model="woche">
+        <input type="text" placeholder="Woche" class="w-2/12 h-8 border rounded float-right p-1 border-gray-400 pl-2" v-model="woche" autofocus>
+				<svg xmlns="http://www.w3.org/2000/svg" @click="clear" class="border h-auto stroke-current text-gray-800 rounded border-gray-400 p-1 hover:shadow" width="30" height="30" viewBox="0 0 24 24" fill="none"  stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
       </div>
 
       <textarea name="content" id="" cols="30" rows="10" class="border rounded w-full p-3 border-gray-400" placeholder="Bericht einfügen" v-model="text"></textarea>
-      <button class="bg-blue-400 w-full my-3 text-white text-xl font-medium p-3 rounded" @click="create"><span class="p-3">Bericht erstellen</span></button>
+      <button class="bg-blue-600 w-full my-3 text-white text-xl font-medium p-3 rounded" @click="create"><span class="p-3">Bericht erstellen</span></button>
 
     </div>
 
 
-    
+
     <img src="./img/banner.png" alt="" ref="banner" width="600" style="display: none">
   </div>
 </template>
@@ -39,6 +40,11 @@ export default {
     }
   },
   methods: {
+		clear: function() {
+			this.value = null,
+			this.woche = null,
+			this.text = null
+		},
     create: function() {
 
       var doc = new jspdf({
@@ -83,6 +89,6 @@ export default {
       return (FirstNewDate.getDate() + "." + (FirstNewDate.getMonth() + 1) + "." + FirstNewDate.getFullYear()) + " bis " + (SecondNewDate.getDate() + "." + (SecondNewDate.getMonth() + 1) + "." + SecondNewDate.getFullYear());
     }
   },
-  
+
 }
 </script>
